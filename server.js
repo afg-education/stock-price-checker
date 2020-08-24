@@ -12,6 +12,14 @@ var runner            = require('./test-runner');
 
 var app = express();
 
+const mongoose = require("mongoose");
+mongoose.set("useCreateIndex", true);
+mongoose.connect(process.env.DATABASE, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
+
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.use(cors({origin: '*'})); //For FCC testing purposes only
